@@ -4,16 +4,66 @@
 	<meta charset="utf-8">
 	<title>Jethro Lai</title>
 	<link rel="stylesheet" href="css/main.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/js-datepicker/datepicker.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="node_modules/js-datepicker/datepicker.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<video autoplay loop muted class="bgvideo" id="bgvideo">
-		<source src="https://s3-ap-northeast-1.amazonaws.com/jethrolai-videos/background.mp4" type="video/mp4">	
-	</video>
+	<!-- <video autoplay loop muted class="bgvideo" id="bgvideo" onClick="playPause();">
+		<source src="https://s3-ap-northeast-1.amazonaws.com/jethrolai-videos/background.mp4" type="video/mp4">
+	</video> -->
 
 	<script>
 		var video = document.getElementById('bgvideo');
-		
+    video.pause();
+    function playPause(){
+      if (video.paused)
+        video.play();
+      else
+        video.pause();
+    }
+
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+        $("#myModal").on("hidden.bs.modal", function () {
+          video.play();
+          console.log("modal close");
+        });
+        const picker = datepicker('.datepicker');
+    });
+
 	</script>
+
+    <!-- Trigger the modal with a button -->
+  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Are you really Sharol Kao?</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+          <div class="datepicker">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 <!-- Quantcast Tag -->
 <script type="text/javascript">
